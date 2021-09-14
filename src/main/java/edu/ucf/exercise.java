@@ -12,11 +12,34 @@ public class exercise {
         // create new scanner
         Scanner input = new Scanner(System.in);
 
-        // prompt for age
-        System.out.print("What is your age? ");
-        int age = input.nextInt();
+        // prompt & record values
+        System.out.print("Enter a 1 if you are male or 2 if you are female: ");
+        int gender = input.nextInt();
+        System.out.print("How many ounces of alcohol did you have? ");
+        int total = input.nextInt();
+        System.out.print("What is your weight, in pounds? ");
+        int weight = input.nextInt();
+        System.out.print("How many hours has it been since your last drink? ");
+        int hours = input.nextInt();
 
-        // output result
-        System.out.print(age > 15 ? "You are old enough to legally drive." : "You are not old enough to legally drive.");
+        // init ratio variable
+        float ratio;
+
+        // declare ratio
+        if (gender == 1)
+            ratio = (float)0.73;
+        else
+            ratio = (float)0.66;
+
+        // calculate BAC
+        double calculated_bac = (total * 5.14 / weight * ratio) - (.015 * hours);
+
+        // output BAC
+        System.out.println("\nYour BAC is " + String.format("%.6f", calculated_bac));
+
+        if (calculated_bac < 0.08)
+            System.out.print("It is legal for you to drive.");
+        else
+            System.out.print("It is not legal for you to drive.");
     }
 }
